@@ -1,0 +1,111 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Components": [
+          {
+            "Filename": "__designer\\blue_textures_binding_light.png",
+            "Alpha": 255,
+            "ScalingAlgorithm": "Nearest-neighbor",
+            "Name": "scalableImage1",
+            "X": 0,
+            "Y": 0,
+            "Width": 800,
+            "Height": 480,
+            "Type": "ScalableImage",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "__designer\\blue_buttons_round_edge_small_pressed.png",
+            "Released": "__designer\\blue_buttons_round_edge_small.png",
+            "Alpha": 255,
+            "Style": "Style4",
+            "Name": "button1",
+            "X": 315,
+            "Y": 210,
+            "Width": 170,
+            "Height": 60,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "button1",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "LED1_button_clicked",
+              "Type": "ActionCustom"
+            }
+          }
+        ],
+        "Name": "Screen1",
+        "OverrideDefaultBufferSize": false,
+        "CanvasBufferSize": 0
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "TGFX10Empty",
+    "Resolution": {
+      "Width": 800,
+      "Height": 480
+    },
+    "SelectedColorDepth": 24,
+    "StartupScreenName": "Screen1",
+    "SelectedStartupLanguage": "GB",
+    "Skin": "Blue",
+    "TouchGfxPath": "touchgfx",
+    "UIPath": ".",
+    "ApplicationTemplate": {
+      "Name": "STM32F469I_DISCO",
+      "Version": "1.1.0",
+      "Description": "ST STM32F469I DISCO",
+      "AvailableColorDepths": [
+        16,
+        24
+      ],
+      "AvailableImageFormats": {
+        "16": {
+          "Opaque": "RGB565",
+          "NonOpaque": "ARGB8888"
+        },
+        "24": {
+          "Opaque": "RGB888",
+          "NonOpaque": "ARGB8888"
+        }
+      },
+      "AvailableResolutions": [
+        {
+          "Width": 800,
+          "Height": 480
+        }
+      ],
+      "PhysicalButtons": [
+        {
+          "Key": 1,
+          "Name": "User Key"
+        }
+      ],
+      "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j10",
+      "PostGenerateCommand": "echo ",
+      "CompileSimulatorCommand": "echo ",
+      "RunSimulatorCommand": "echo ",
+      "CompileTargetCommand": "make -f target/gcc/Makefile -j10",
+      "FlashTargetCommand": "make -f target/gcc/Makefile -j10 flash"
+    }
+  },
+  "Version": "4.10.0",
+  "CreatedBy": "4.10.0"
+}
