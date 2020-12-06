@@ -1,0 +1,8 @@
+*.log
+Debug
+Project.launch
+TouchGFX/assets/fonts
+TouchGFX/assets/images
+TouchGFX/build
+TouchGFX/generated
+TouchGFX/touchgfx
