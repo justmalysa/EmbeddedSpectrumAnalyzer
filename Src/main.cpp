@@ -26,7 +26,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "arm_math.h"
+#include "arm_const_structs.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,7 +37,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+arm_rfft_fast_instance_f32 app_arm_rfft_fast_sR_f32_len512 = {
+	{ 256, twiddleCoef_256, armBitRevIndexTable256, ARMBITREVINDEXTABLE_256_TABLE_LENGTH },
+	512u,
+	(float32_t *)twiddleCoef_rfft_512
+};
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -84,7 +89,14 @@ void StartDefaultTask(void const * argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void generate_sine(float32_t *data, size_t size, int f, int fs)
+{
+	float Ts = 1/((float)fs);
+	for(size_t i = 0; i<size; i++)
+	{
+		data[i] = arm_sin_f32(2*3.14*f*Ts*i);
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -123,7 +135,28 @@ int main(void)
   MX_SAI1_Init();
   MX_SDIO_SD_Init();
   MX_USART3_UART_Init();
+
   /* USER CODE BEGIN 2 */
+
+  size_t size = 512;
+  float32_t data_in[size] = {0};
+  float32_t data_out[size] = {0};
+  float32_t data_mag_out[size] = {0};
+  int f = 10;
+  int fs = 100;
+
+  /* Generation sine function */
+  generate_sine(data_in, size, f, fs);
+
+  /* Process the data through the RFFT/RIFFT module */
+  arm_rfft_fast_f32(&app_arm_rfft_fast_sR_f32_len512, data_in, data_out, 0);
+
+  /* Process the data through the Complex Magnitude Module for
+    calculating the magnitude at each bin */
+  arm_cmplx_mag_f32(data_out+2, data_mag_out+1, size/2 - 1);
+  /* Handle special cases */
+  data_mag_out[0] = fabs(data_out[0]);
+  data_mag_out[size/2] = fabs(data_out[1]);
 
   /* USER CODE END 2 */
 
