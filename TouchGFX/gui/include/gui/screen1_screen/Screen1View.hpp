@@ -16,13 +16,12 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent();
-    virtual void LED1_button_clicked();
 protected:
 private:
     int tickCounter;
 
-    Image background;
     Graph graph;
+    Graph spectrum;
 };
 
 #endif // SCREEN1_VIEW_HPP

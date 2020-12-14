@@ -4,15 +4,18 @@
       {
         "Components": [
           {
-            "Filename": "__designer\\blue_textures_binding_light.png",
+            "Color": {
+              "Red": 0,
+              "Green": 0,
+              "Blue": 0
+            },
             "Alpha": 255,
-            "ScalingAlgorithm": "Nearest-neighbor",
-            "Name": "scalableImage1",
+            "Name": "box1",
             "X": 0,
             "Y": 0,
             "Width": 800,
             "Height": 480,
-            "Type": "ScalableImage",
+            "Type": "Box",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -20,16 +23,290 @@
             "Moveable": false
           },
           {
-            "Pressed": "__designer\\blue_buttons_round_edge_small_pressed.png",
-            "Released": "__designer\\blue_buttons_round_edge_small.png",
-            "Alpha": 255,
-            "Style": "Style4",
-            "Name": "button1",
-            "X": 315,
-            "Y": 210,
-            "Width": 170,
-            "Height": 60,
-            "Type": "Button",
+            "Color": {
+              "Red": 245,
+              "Green": 235,
+              "Blue": 235
+            },
+            "Alpha": 100,
+            "StartX": 50,
+            "StartY": 120,
+            "EndX": 750,
+            "EndY": 120,
+            "LineWidth": 2,
+            "LineEndingStyle": "Round",
+            "Name": "line1",
+            "X": 0,
+            "Y": 0,
+            "Width": 800,
+            "Height": 240,
+            "Type": "Line",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "FileNameImage": "",
+            "Alpha": 100,
+            "StartX": 100,
+            "StartY": 10,
+            "EndX": 100,
+            "EndY": 220,
+            "LineWidth": 2,
+            "LineEndingStyle": "Round",
+            "Name": "line2",
+            "X": 0,
+            "Y": 0,
+            "Width": 159,
+            "Height": 240,
+            "Type": "Line",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "FileNameImage": "",
+            "Alpha": 100,
+            "StartX": 50,
+            "StartY": 120,
+            "EndX": 750,
+            "EndY": 120,
+            "LineWidth": 2,
+            "LineEndingStyle": "Round",
+            "Name": "line3",
+            "X": 0,
+            "Y": 240,
+            "Width": 800,
+            "Height": 240,
+            "Type": "Line",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "FileNameImage": "",
+            "Alpha": 100,
+            "StartX": 100,
+            "StartY": 10,
+            "EndX": 100,
+            "EndY": 220,
+            "LineWidth": 2,
+            "LineEndingStyle": "Round",
+            "Name": "line4",
+            "X": 0,
+            "Y": 240,
+            "Width": 190,
+            "Height": 240,
+            "Type": "Line",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId1",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 243,
+              "Green": 238,
+              "Blue": 238
+            },
+            "Alpha": 100,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1",
+            "X": 690,
+            "Y": 370,
+            "Width": 58,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId2",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 243,
+              "Green": 236,
+              "Blue": 236
+            },
+            "Alpha": 100,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea2",
+            "X": 690,
+            "Y": 130,
+            "Width": 43,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId3",
+            "TextRotation": "270",
+            "Color": {
+              "Red": 153,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 200,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "UseBuffer": false,
+              "BufferSize": 0
+            },
+            "Name": "textArea3",
+            "X": 31,
+            "Y": 19,
+            "Width": 36,
+            "Height": 91,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId4",
+            "TextRotation": "270",
+            "Color": {
+              "Red": 153,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 200,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Name": "textArea4",
+            "X": 31,
+            "Y": 278,
+            "Width": 36,
+            "Height": 45,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId5",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 249,
+              "Green": 240,
+              "Blue": 240
+            },
+            "Alpha": 100,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea5",
+            "X": 600,
+            "Y": 130,
+            "Width": 26,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId6",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 249,
+              "Green": 245,
+              "Blue": 245
+            },
+            "Alpha": 100,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea6",
+            "X": 350,
+            "Y": 130,
+            "Width": 26,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId7",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 249,
+              "Green": 240,
+              "Blue": 240
+            },
+            "Alpha": 100,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea7",
+            "X": 350,
+            "Y": 370,
+            "Width": 26,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 253,
+              "Green": 251,
+              "Blue": 251
+            },
+            "Alpha": 100,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea8",
+            "X": 600,
+            "Y": 370,
+            "Width": 26,
+            "Height": 25,
+            "Type": "TextArea",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -37,26 +314,47 @@
             "Moveable": false
           }
         ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": false,
-            "Trigger": {
-              "TriggerComponent": "button1",
-              "Type": "TriggerClicked"
-            },
-            "Action": {
-              "FunctionName": "LED1_button_clicked",
-              "Type": "ActionCustom"
-            }
-          }
-        ],
+        "Interactions": [],
         "Name": "Screen1",
         "OverrideDefaultBufferSize": false,
-        "CanvasBufferSize": 0
+        "CanvasBufferSize": 12000
       }
     ],
     "CustomContainerDefinitions": [],
+    "TextEntries": [
+      {
+        "TextEntryId": "SingleUseId1",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId2",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId3",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId4",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId5",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId6",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId7",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId8",
+        "IsResource": false
+      }
+    ],
     "Name": "TGFX10Empty",
     "Resolution": {
       "Width": 800,
