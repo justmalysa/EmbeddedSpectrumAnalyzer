@@ -17,3 +17,7 @@ in TouchGFX Designer and click `Generate code` in the upper right corner.
 Next import the `EmbeddedSpectrumAnalyzer` project to the CubeIDE workspace
 (File -> Import -> General -> Existing Projects into Workspace).
 After that, open the project in CubeIDE and build it.
+
+
+## Link to the signal_generator on KLO5
+https://github.com/przemyslaw-grobecki/signal_generator
