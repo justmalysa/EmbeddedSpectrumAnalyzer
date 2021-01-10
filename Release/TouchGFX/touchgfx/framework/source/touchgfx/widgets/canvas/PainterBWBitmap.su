@@ -1,0 +1,8 @@
+LCD1bpp.hpp:146:21:virtual uint8_t touchgfx::LCD1bpp::bitDepth() const	0	static
+PainterBWBitmap.hpp:54:13:touchgfx::PainterBWBitmap::~PainterBWBitmap()	8	static
+PainterBWBitmap.hpp:54:13:virtual touchgfx::PainterBWBitmap::~PainterBWBitmap()	8	static
+PainterBWBitmap.cpp:158:6:virtual bool touchgfx::PainterBWBitmap::renderInit()	24	static
+PainterBWBitmap.cpp:37:6:virtual void touchgfx::PainterBWBitmap::render(uint8_t*, int, int, int, unsigned int, const uint8_t*)	56	static
+PainterBWBitmap.cpp:188:6:virtual bool touchgfx::PainterBWBitmap::renderNext(uint8_t&)	24	static
+PainterBWBitmap.cpp:21:1:touchgfx::PainterBWBitmap::PainterBWBitmap(const touchgfx::Bitmap&)	24	static
+PainterBWBitmap.cpp:27:6:void touchgfx::PainterBWBitmap::setBitmap(const touchgfx::Bitmap&)	16	static

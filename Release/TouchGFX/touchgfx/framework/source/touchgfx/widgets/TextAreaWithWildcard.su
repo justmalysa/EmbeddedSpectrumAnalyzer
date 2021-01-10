@@ -1,0 +1,2 @@
+Font.hpp:346:22:virtual uint16_t touchgfx::Font::getMinimumTextHeight() const	0	static
+TextAreaWithWildcard.cpp:20:9:) const	68	static
