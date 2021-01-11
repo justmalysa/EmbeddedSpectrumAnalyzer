@@ -27,7 +27,7 @@ public:
 
     virtual ~Screen1Presenter() {};
 
-    void setNewValue(unsigned int value);
+    void setNewValue(uint16_t value);
 
 private:
     Screen1Presenter();
