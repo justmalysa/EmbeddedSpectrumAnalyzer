@@ -28,7 +28,7 @@ public:
         model = m;
     }
 
-    virtual void setNewValue(unsigned int value){}
+    virtual void setNewValue(uint16_t value){}
 
 protected:
     Model* model;

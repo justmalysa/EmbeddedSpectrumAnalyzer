@@ -38,7 +38,7 @@
             "Name": "textArea1",
             "X": 298,
             "Y": 228,
-            "Width": 185,
+            "Width": 204,
             "Height": 25,
             "Type": "TextArea",
             "Visible": true,
