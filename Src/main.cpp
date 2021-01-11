@@ -62,7 +62,7 @@ UART_HandleTypeDef huart3;
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
 osThreadId secondTaskHanldle;
-unsigned int adc_value = 0;
+uint16_t adc_value = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
