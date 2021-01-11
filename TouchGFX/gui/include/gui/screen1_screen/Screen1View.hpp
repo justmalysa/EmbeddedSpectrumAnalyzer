@@ -13,7 +13,8 @@ public:
     virtual void tearDownScreen();
     virtual void LED1_button_clicked();
 
-    void updateVal(uint16_t newValue);
+    void updateVal(unsigned int newValue);
+
 protected:
 };
 

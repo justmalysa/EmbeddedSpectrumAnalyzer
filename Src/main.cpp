@@ -62,7 +62,7 @@ UART_HandleTypeDef huart3;
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
 osThreadId secondTaskHanldle;
-uint16_t adc_value = 0;
+unsigned int adc_value = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -88,10 +88,7 @@ void secondTask(void const * argument);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
-
 	adc_value = HAL_ADC_GetValue(&hadc1);
-	//HAL_ADC_Start_IT(&hadc1);
-
 }
 /* USER CODE END 0 */
 
@@ -681,13 +678,18 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+extern xQueueHandle messageQ;
+
 void secondTask(void const * argument)
 {
 
   for(;;)
   {
 	HAL_ADC_Start_IT(&hadc1);
-    osDelay(1);
+	xQueueSend(messageQ,&adc_value,0);
+    osDelay(100);
+
   }
 
 }
