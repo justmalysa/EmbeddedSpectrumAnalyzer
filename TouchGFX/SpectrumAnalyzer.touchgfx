@@ -33,12 +33,12 @@
             "Wildcard1": {
               "TextId": "SingleUseId2",
               "UseBuffer": true,
-              "BufferSize": 12
+              "BufferSize": 4
             },
             "Name": "textArea1",
             "X": 298,
             "Y": 228,
-            "Width": 159,
+            "Width": 185,
             "Height": 25,
             "Type": "TextArea",
             "Visible": true,
@@ -46,81 +46,9 @@
             "Clickable": false,
             "Fadeable": false,
             "Moveable": false
-          },
-          {
-            "Pressed": "__designer\\blue_buttons_round_edge_small_pressed.png",
-            "Released": "__designer\\blue_buttons_round_edge_small.png",
-            "Alpha": 255,
-            "Style": "Style4",
-            "Name": "button1",
-            "X": 298,
-            "Y": 21,
-            "Width": 170,
-            "Height": 60,
-            "Type": "Button",
-            "Visible": true,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Pressed": "__designer\\blue_buttons_round_edge_small_pressed.png",
-            "Released": "__designer\\blue_buttons_round_edge_small.png",
-            "Alpha": 255,
-            "TextId": "SingleUseId3",
-            "ReleasedColor": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "PressedColor": {
-              "Red": 255,
-              "Green": 0,
-              "Blue": 0
-            },
-            "TextRotation": "0",
-            "Style": "Style4",
-            "Name": "ADCcall",
-            "X": 298,
-            "Y": 318,
-            "Width": 170,
-            "Height": 60,
-            "Type": "ButtonWithLabel",
-            "Visible": true,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
           }
         ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": false,
-            "Trigger": {
-              "TriggerComponent": "button1",
-              "Type": "TriggerClicked"
-            },
-            "Action": {
-              "ScreenTransitionType": "ScreenTransitionSlide",
-              "ScreenTransitionDirection": "East",
-              "ActionComponent": "Screen2",
-              "Type": "ActionGotoScreen"
-            }
-          },
-          {
-            "InteractionName": "Interaction2",
-            "HasCompletedTrigger": false,
-            "Trigger": {
-              "TriggerComponent": "ADCcall",
-              "Type": "TriggerClicked"
-            },
-            "Action": {
-              "Type": "ActionCustom"
-            }
-          }
-        ],
+        "Interactions": [],
         "Name": "Screen1",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
@@ -193,10 +121,6 @@
       },
       {
         "TextEntryId": "SingleUseId2",
-        "IsResource": false
-      },
-      {
-        "TextEntryId": "SingleUseId3",
         "IsResource": false
       }
     ],

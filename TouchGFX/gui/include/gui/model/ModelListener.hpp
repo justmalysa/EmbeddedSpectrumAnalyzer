@@ -28,6 +28,8 @@ public:
         model = m;
     }
 
+    virtual void setNewValue(unsigned int value){}
+
 protected:
     Model* model;
 };

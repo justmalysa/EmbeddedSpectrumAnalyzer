@@ -17,3 +17,6 @@ void Screen1Presenter::deactivate()
 
 }
 
+void Screen1Presenter::setNewValue(unsigned int value){
+	view.updateVal(value);
+}
