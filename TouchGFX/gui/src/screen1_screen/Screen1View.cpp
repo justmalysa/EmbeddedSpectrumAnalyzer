@@ -25,7 +25,7 @@ void Screen1View::LED1_button_clicked()
 	HAL_GPIO_TogglePin(GPIOG, GPIO_PIN_6);
 }
 
-void Screen1View::updateVal(uint16_t newValue){
+void Screen1View::updateVal(unsigned int newValue){
 	Unicode::snprintf(textArea1Buffer,TEXTAREA1_SIZE, "%d",newValue);
 	textArea1.resizeToCurrentText();
 	textArea1.invalidate();

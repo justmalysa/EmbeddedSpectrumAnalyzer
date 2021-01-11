@@ -27,6 +27,8 @@ public:
 
     virtual ~Screen1Presenter() {};
 
+    void setNewValue(unsigned int value);
+
 private:
     Screen1Presenter();
 
