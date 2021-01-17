@@ -27,6 +27,7 @@ extern "C"{
 
 #define Y_AXIS_OFFSET_PX      10
 #define Y_AXIS_SIZE_PX        (GRAPH_HEIGHT_PX - (Y_AXIS_OFFSET_PX * 2))
+#define Y_AXIS_SIZE_FFT_PX    200
 
 #define SIGNAL_MAX_V		  (3.3f)
 #define SIGNAL_MAX_LSB		  (4095)
@@ -86,7 +87,7 @@ void Screen1View::setupScreen() {
     add(graph);
 
     // Place the graph on the screen
-    spectrum.setXY(GRAPH_WIDTH_START_PX, 200);
+    spectrum.setXY(GRAPH_WIDTH_START_PX, Y_AXIS_SIZE_FFT_PX);
 
     // Set the outer dimensions and color of the graph
     spectrum.setup(GRAPH_WIDTH_PX, GRAPH_HEIGHT_PX, Color::getColorFrom24BitRGB(0x00, 0xFF, 0xFF));
@@ -146,7 +147,7 @@ void Screen1View::updateVal(uint16_t * adc_buffer_ptr)
         }
     }
 
-    float32_t scale = ((float)Y_AXIS_SIZE_PX) / max_spectrum;
+    float32_t scale = ((float)Y_AXIS_SIZE_FFT_PX) / max_spectrum;
     for(size_t i = 0; i < GRAPH_MAX_PTS; i++)
     {
         uint32_t sample_idx = i * FFT_X_AXIS_SPACING;
