@@ -27,7 +27,7 @@ public:
 
     virtual ~Screen1Presenter() {};
 
-    void setNewValue(uint16_t value);
+    void setNewValue(uint16_t * adc_buffer_ptr);
 
 private:
     Screen1Presenter();

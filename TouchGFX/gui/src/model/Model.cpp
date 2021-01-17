@@ -4,7 +4,7 @@
 #include "queue.h"
 #include "task.h"
 
-uint16_t value = 0;
+uint16_t * adc_buffer_ptr;
 
 extern "C"
 {
@@ -13,12 +13,12 @@ extern "C"
 Model::Model() :
 modelListener(0)
 {
-	messageQ = xQueueGenericCreate(1,3,1);
+	messageQ = xQueueGenericCreate(1,4,1);
 }
 
 void Model::tick()
 {
-	if(xQueueReceive(messageQ, &value, 0) == pdTRUE){
-		modelListener->setNewValue(value);
+	if(xQueueReceive(messageQ, &adc_buffer_ptr, 0) == pdTRUE){
+		modelListener->setNewValue(adc_buffer_ptr);
 	}
 }

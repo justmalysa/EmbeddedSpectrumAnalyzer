@@ -28,7 +28,7 @@ public:
         model = m;
     }
 
-    virtual void setNewValue(uint16_t value){}
+    virtual void setNewValue(uint16_t * adc_buffer_ptr){}
 
 protected:
     Model* model;

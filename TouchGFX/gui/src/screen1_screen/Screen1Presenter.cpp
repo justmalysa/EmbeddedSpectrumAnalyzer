@@ -17,6 +17,6 @@ void Screen1Presenter::deactivate()
 
 }
 
-void Screen1Presenter::setNewValue(uint16_t value){
-	view.updateVal(value);
+void Screen1Presenter::setNewValue(uint16_t * adc_buffer_ptr){
+	view.updateVal(adc_buffer_ptr);
 }
