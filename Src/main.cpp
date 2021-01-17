@@ -37,11 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-arm_rfft_fast_instance_f32 app_arm_rfft_fast_sR_f32_len512 = {
-	{ 256, twiddleCoef_256, armBitRevIndexTable256, ARMBITREVINDEXTABLE_256_TABLE_LENGTH },
-	512u,
-	(float32_t *)twiddleCoef_rfft_512
-};
+#define ADC_BUFFER_SIZE 512
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -63,12 +59,25 @@ SAI_HandleTypeDef hsai_BlockA1;
 
 SD_HandleTypeDef hsd;
 
+TIM_HandleTypeDef htim2;
+
 UART_HandleTypeDef huart3;
 
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
-osThreadId secondTaskHanldle;
-uint16_t adc_value = 0;
+
+extern xQueueHandle messageQ;
+
+uint32_t adc_index = 0u;
+uint16_t * adc_current_buffer;
+uint16_t adc_buffer1[ADC_BUFFER_SIZE];
+uint16_t adc_buffer2[ADC_BUFFER_SIZE];
+
+arm_rfft_fast_instance_f32 app_arm_rfft_fast_sR_f32_len512 = {
+	{ 256, twiddleCoef_256, armBitRevIndexTable256, ARMBITREVINDEXTABLE_256_TABLE_LENGTH },
+	512u,
+	(float32_t *)twiddleCoef_rfft_512
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,10 +94,11 @@ extern void GRAPHICS_HW_Init(void);
 extern void GRAPHICS_Init(void);
 extern void GRAPHICS_MainTask(void);
 static void MX_ADC1_Init(void);
+static void MX_TIM2_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
-void secondTask(void const * argument);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -96,7 +106,21 @@ void secondTask(void const * argument);
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-    adc_value = HAL_ADC_GetValue(&hadc1);
+	adc_current_buffer[adc_index] = HAL_ADC_GetValue(&hadc1);
+	adc_index ++;
+	if(adc_index == ADC_BUFFER_SIZE)
+	{
+		adc_index = 0u;
+		xQueueSendFromISR(messageQ, &adc_current_buffer, NULL);
+		if(adc_current_buffer == adc_buffer1)
+		{
+			adc_current_buffer = adc_buffer2;
+		}
+		else
+		{
+			adc_current_buffer = adc_buffer1;
+		}
+	}
 }
 
 void generate_sine(float32_t *data, size_t size, int f, int fs)
@@ -116,7 +140,7 @@ void generate_sine(float32_t *data, size_t size, int f, int fs)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  adc_current_buffer = adc_buffer1;
   /* USER CODE END 1 */
   
 
@@ -146,29 +170,8 @@ int main(void)
   MX_SDIO_SD_Init();
   MX_USART3_UART_Init();
   MX_ADC1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
-  HAL_ADC_Start_IT(&hadc1);
-
-  size_t size = 512;
-  float32_t data_in[size] = {0};
-  float32_t data_out[size] = {0};
-  float32_t data_mag_out[size] = {0};
-  int f = 10;
-  int fs = 100;
-
-  /* Generation sine function */
-  generate_sine(data_in, size, f, fs);
-
-  /* Process the data through the RFFT/RIFFT module */
-  arm_rfft_fast_f32(&app_arm_rfft_fast_sR_f32_len512, data_in, data_out, 0);
-
-  /* Process the data through the Complex Magnitude Module for
-    calculating the magnitude at each bin */
-  arm_cmplx_mag_f32(data_out+2, data_mag_out+1, size/2 - 1);
-  /* Handle special cases */
-  data_mag_out[0] = fabs(data_out[0]);
-  data_mag_out[size/2] = fabs(data_out[1]);
 
   /* USER CODE END 2 */
 
@@ -202,8 +205,7 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  osThreadDef(second, secondTask, osPriorityNormal, 0, 512);
-    defaultTaskHandle = osThreadCreate(osThread(second), NULL);
+
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -546,6 +548,51 @@ static void MX_SDIO_SD_Init(void)
 }
 
 /**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 89;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 49;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
   * @brief USART3 Initialization Function
   * @param None
   * @retval None
@@ -716,21 +763,6 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-extern xQueueHandle messageQ;
-
-void secondTask(void const * argument)
-{
-
-  for(;;)
-  {
-	HAL_ADC_Start_IT(&hadc1);
-	xQueueSend(messageQ,&adc_value,0);
-    osDelay(100);
-
-  }
-
-}
-
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -778,7 +810,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+  if (htim->Instance == TIM2) {
+	  HAL_ADC_Start_IT(&hadc1);
+  }
   /* USER CODE END Callback 1 */
 }
 
